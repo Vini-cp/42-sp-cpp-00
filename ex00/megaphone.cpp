@@ -1,14 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/13 17:11:20 by coder             #+#    #+#             */
-/*   Updated: 2022/02/13 17:38:58 by coder            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+// Author: vcordeir <vcordeir@student.42sp.org.br>
+// 42 SP
 
 #include <iostream>
 #include <cstring>
@@ -27,5 +18,5 @@ int main (int argc, char **argv)
 	else
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
 	std::cout << std::endl;
-	return (0);
+	return 0;
 }
