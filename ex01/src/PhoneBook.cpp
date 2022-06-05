@@ -1,65 +1,149 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/13 23:46:46 by coder             #+#    #+#             */
-/*   Updated: 2022/02/16 01:05:31 by coder            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+// Author: vcordeir <vcordeir@student.42sp.org.br>
+// 42 SP
 
-#include "../include/PhoneBook.hpp"
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include "../include/PhoneBook.h"
 
-PhoneBook::PhoneBook( void ) : _noContacts(0)
+//------------------------------------------------------------------------------
+
+PhoneBook::PhoneBook( void ) :
+	mActiveContacts( 0 )
 {
-	// std::cout << "Void constructor of PhoneBook called" << std::endl;
-	return ;
 }
+
+//------------------------------------------------------------------------------
 
 PhoneBook::~PhoneBook( void )
 {
-	// std::cout << "Destructor of PhoneBook called" << std::endl;
-	return ;
 }
 
-void	PhoneBook::setNewContact( Contact &contact )
+//------------------------------------------------------------------------------
+
+void PhoneBook::setNewContact( const Contact &prContact )
 {
-	if (_noContacts == 8)
-		_contact[7] = contact;
+	if (mActiveContacts == mMaximumContacts)
+		mContacts[ mActiveContacts - 1 ] = prContact;
 	else
 	{
-		_contact[_noContacts] = contact;
-		_noContacts++;
+		mContacts[ mActiveContacts ] = prContact;
+		mActiveContacts++;
 	}
 }
 
-int		PhoneBook::getNoContacts( void )
+//------------------------------------------------------------------------------
+
+int PhoneBook::getNumberOfContacts( void ) const
 {
-	return (_noContacts);
+	return mActiveContacts;
 }
 
-std::string*	PhoneBook::getContactsName( void )
+//------------------------------------------------------------------------------
+
+std::string* PhoneBook::getContactsFirstName( void ) const
 {
-	std::string *names = new std::string[_noContacts];
-	for (int i = 0; i < _noContacts; i++)
-		names[i] = _contact[i].getContactName();
-	return (names);
+	std::string* lNames = new std::string[ mActiveContacts ];
+	for (int i = 0; i < mActiveContacts; i++)
+		lNames[ i ] = mContacts[ i ].getFirstName();
+	return lNames;
 }
 
-std::string*	PhoneBook::getContactsNickname( void )
+//------------------------------------------------------------------------------
+
+std::string* PhoneBook::getContactsLasttName( void ) const
 {
-	std::string *nicknames = new std::string[_noContacts];
-	for (int i = 0; i < _noContacts; i++)
-		nicknames[i] = _contact[i].getContactNickname();
-	return (nicknames);
+	std::string* lNames = new std::string[ mActiveContacts ];
+	for (int i = 0; i < mActiveContacts; i++)
+		lNames[ i ] = mContacts[ i ].getLastName();
+	return lNames;
 }
 
-std::string*	PhoneBook::getContactsNumber( void )
+//------------------------------------------------------------------------------
+
+std::string* PhoneBook::getContactsNickname( void ) const
 {
-	std::string *numbers = new std::string[_noContacts];
-	for (int i = 0; i < _noContacts; i++)
-		numbers[i] = _contact[i].getContactNumber();
-	return (numbers);
+	std::string* lNicknames = new std::string[ mActiveContacts ];
+	for (int i = 0; i < mActiveContacts; i++)
+		lNicknames[ i ] = mContacts[ i ].getNickname();
+	return lNicknames;
 }
+
+//------------------------------------------------------------------------------
+
+std::string* PhoneBook::getContactsNumber( void ) const
+{
+	std::string* lNumbers = new std::string[ mActiveContacts ];
+	for (int i = 0; i < mActiveContacts; i++)
+		lNumbers[ i ] = mContacts[ i ].getNumber();
+	return lNumbers;
+}
+
+//------------------------------------------------------------------------------
+
+std::string* PhoneBook::getContactsSecret( void ) const
+{
+	std::string* lSecrets = new std::string[ mActiveContacts ];
+	for (int i = 0; i < mActiveContacts; i++)
+		lSecrets[ i ] = mContacts[ i ].getSecret();
+	return lSecrets;
+}
+
+//------------------------------------------------------------------------------
+
+void PhoneBook::displayContactInformation( int pIndex ) const
+{
+	std::cout << "First name: " << mContacts[ pIndex ].getFirstName() << std::endl;
+	std::cout << "Last name : " << mContacts[ pIndex ].getLastName() << std::endl;
+	std::cout << "Nick name : " << mContacts[ pIndex ].getNickname() << std::endl;
+	std::cout << "Number    : " << mContacts[ pIndex ].getNumber() << std::endl;
+	std::cout << "Secret    : " << mContacts[ pIndex ].getSecret() << std::endl;
+}
+
+//------------------------------------------------------------------------------
+
+void PhoneBook::searchContact( void ) const
+{
+	displayHeaderInfo();
+	displayContatsInfo();
+}
+
+//------------------------------------------------------------------------------
+
+void PhoneBook::displayHeaderInfo( void ) const
+{
+	std::cout << std::right << std::setw(10) << "Index" << " | ";
+	std::cout << std::right << std::setw(10) << "First Name" << " | ";
+	std::cout << std::right << std::setw(10) << "Last Name" << " | ";
+	std::cout << std::right << std::setw(10) << "Nickame" << std::endl;
+}
+
+//------------------------------------------------------------------------------
+
+std::string PhoneBook::formatName(std::string pName) const
+{
+	if (pName.length() > 10)
+		return (pName.substr(0, 9) + '.');
+	else
+		return (pName);
+}
+
+//------------------------------------------------------------------------------
+
+void PhoneBook::displayContatsInfo( void ) const
+{
+	for (int i = 0; i < mActiveContacts; i++)
+	{
+		std::cout << std::right << std::setw(10) << i;
+		std::cout << " | ";
+		std::cout << std::right << std::setw(10) << formatName( mContacts[ i ].getFirstName() );
+		std::cout << " | ";
+		std::cout << std::right << std::setw(10) << formatName( mContacts[ i ].getLastName() );
+		std::cout << " | ";
+		std::cout << std::right << std::setw(10) << formatName( mContacts[ i ].getNickname() );; 
+		std::cout << std::endl;
+	}
+}
+
+//------------------------------------------------------------------------------
