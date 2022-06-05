@@ -1,54 +1,134 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Contact.cpp                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/13 17:49:38 by coder             #+#    #+#             */
-/*   Updated: 2022/02/16 15:06:32 by coder            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+// Author: vcordeir <vcordeir@student.42sp.org.br>
+// 42 SP
 
-#include "../include/Contact.hpp"
+#include <iostream>
+#include "../include/Contact.h"
 
-Contact::Contact( void ) : _name(""), _number("")
+//------------------------------------------------------------------------------
+
+Contact::Contact( void ) :
+	mFirstName(""),
+	mLastName(""),
+	mNickname(""),
+	mNumber(""),
+	mSecret("")
 {
-	// std::cout << "Void constructor of Contact called" << std::endl;
-	return ;
 }
 
-Contact::Contact( std::string name, std::string number )
-	: _name(name), _number(number)
+//------------------------------------------------------------------------------
+
+Contact::Contact( std::string pFirstName, std::string pLastName, std::string pNickname, std::string pNumber, std::string pSecret ) :
+	mFirstName( pFirstName ),
+	mLastName( pLastName ),
+	mNickname( pNickname ),
+	mNumber( pNumber ),
+	mSecret( pSecret )
 {
-	// std::cout << "Constructor of Contact called" << std::endl;
-	return ;
 }
+
+//------------------------------------------------------------------------------
+
+Contact::Contact( const Contact &prContact )
+{
+	mFirstName = prContact.getFirstName();
+	mLastName = prContact.getLastName();
+	mNickname = prContact.getNickname();
+	mNumber = prContact.getNumber();
+	mSecret = prContact.getSecret();
+}
+
+//------------------------------------------------------------------------------
 
 Contact::~Contact( void )
 {
-	// std::cout << "Destructor of Contact " <<  this->_name << " " << this->_number << " called" << std::endl;
-	return ;
 }
 
-void	Contact::setContact( std::string name, std::string number, std::string nickname )
+//------------------------------------------------------------------------------
+
+Contact& Contact::operator=( const Contact &prContact )
 {
-	_name = name;
-	_nickname = nickname;
-	_number = number;
+	if ( this == &prContact )
+		return ( *this );
+	mFirstName = prContact.getFirstName();
+	mLastName = prContact.getLastName();
+	mNickname = prContact.getNickname();
+	mNumber = prContact.getNumber();
+	mSecret = prContact.getSecret();
+	return ( *this );
 }
 
-std::string	Contact::getContactName( void )
+//------------------------------------------------------------------------------
+
+void Contact::setFirstName( std::string pName )
 {
-	return (_name);
+	mFirstName = pName;
 }
 
-std::string	Contact::getContactNickname( void )
+//------------------------------------------------------------------------------
+
+std::string Contact::getFirstName( void ) const
 {
-	return (_nickname);
+	return mFirstName;
 }
 
-std::string	Contact::getContactNumber( void )
+//------------------------------------------------------------------------------
+
+
+void Contact::setLastName( std::string pName )
 {
-	return (_number);
+	mLastName = pName;
 }
+
+//------------------------------------------------------------------------------
+
+std::string Contact::getLastName( void ) const
+{
+	return mLastName;
+}
+
+//------------------------------------------------------------------------------
+
+
+void Contact::setNickname( std::string pName )
+{
+	mNickname = pName;
+}
+
+//------------------------------------------------------------------------------
+
+std::string Contact::getNickname( void ) const
+{
+	return mNickname;
+}
+
+//------------------------------------------------------------------------------
+
+
+void Contact::setNumber( std::string pNumber )
+{
+	mNumber = pNumber;
+}
+
+//------------------------------------------------------------------------------
+
+std::string Contact::getNumber( void ) const
+{
+	return mNumber;
+}
+
+//------------------------------------------------------------------------------
+
+
+void Contact::setSecret( std::string pSecret )
+{
+	mSecret = pSecret;
+}
+
+//------------------------------------------------------------------------------
+
+std::string Contact::getSecret( void ) const
+{
+	return mSecret;
+}
+
+//------------------------------------------------------------------------------
