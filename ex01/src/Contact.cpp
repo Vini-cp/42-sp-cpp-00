@@ -7,22 +7,22 @@
 //------------------------------------------------------------------------------
 
 Contact::Contact( void ) :
-	mFirstName(""),
-	mLastName(""),
-	mNickname(""),
-	mNumber(""),
-	mSecret("")
+    mFirstName(""),
+    mLastName(""),
+    mNickname(""),
+    mNumber(""),
+    mSecret("")
 {
 }
 
 //------------------------------------------------------------------------------
 
 Contact::Contact( std::string pFirstName, std::string pLastName, std::string pNickname, std::string pNumber, std::string pSecret ) :
-	mFirstName( pFirstName ),
-	mLastName( pLastName ),
-	mNickname( pNickname ),
-	mNumber( pNumber ),
-	mSecret( pSecret )
+    mFirstName( pFirstName ),
+    mLastName( pLastName ),
+    mNickname( pNickname ),
+    mNumber( pNumber ),
+    mSecret( pSecret )
 {
 }
 
@@ -30,11 +30,11 @@ Contact::Contact( std::string pFirstName, std::string pLastName, std::string pNi
 
 Contact::Contact( const Contact &prContact )
 {
-	mFirstName = prContact.getFirstName();
-	mLastName = prContact.getLastName();
-	mNickname = prContact.getNickname();
-	mNumber = prContact.getNumber();
-	mSecret = prContact.getSecret();
+    mFirstName = prContact.getFirstName();
+    mLastName = prContact.getLastName();
+    mNickname = prContact.getNickname();
+    mNumber = prContact.getNumber();
+    mSecret = prContact.getSecret();
 }
 
 //------------------------------------------------------------------------------
@@ -47,28 +47,29 @@ Contact::~Contact( void )
 
 Contact& Contact::operator=( const Contact &prContact )
 {
-	if ( this == &prContact )
-		return ( *this );
-	mFirstName = prContact.getFirstName();
-	mLastName = prContact.getLastName();
-	mNickname = prContact.getNickname();
-	mNumber = prContact.getNumber();
-	mSecret = prContact.getSecret();
-	return ( *this );
+    if ( this == &prContact ) return *this;
+
+    mFirstName = prContact.getFirstName();
+    mLastName = prContact.getLastName();
+    mNickname = prContact.getNickname();
+    mNumber = prContact.getNumber();
+    mSecret = prContact.getSecret();
+
+    return *this;
 }
 
 //------------------------------------------------------------------------------
 
 void Contact::setFirstName( std::string pName )
 {
-	mFirstName = pName;
+    mFirstName = pName;
 }
 
 //------------------------------------------------------------------------------
 
 std::string Contact::getFirstName( void ) const
 {
-	return mFirstName;
+    return mFirstName;
 }
 
 //------------------------------------------------------------------------------
@@ -76,14 +77,14 @@ std::string Contact::getFirstName( void ) const
 
 void Contact::setLastName( std::string pName )
 {
-	mLastName = pName;
+    mLastName = pName;
 }
 
 //------------------------------------------------------------------------------
 
 std::string Contact::getLastName( void ) const
 {
-	return mLastName;
+    return mLastName;
 }
 
 //------------------------------------------------------------------------------
@@ -91,14 +92,14 @@ std::string Contact::getLastName( void ) const
 
 void Contact::setNickname( std::string pName )
 {
-	mNickname = pName;
+    mNickname = pName;
 }
 
 //------------------------------------------------------------------------------
 
 std::string Contact::getNickname( void ) const
 {
-	return mNickname;
+    return mNickname;
 }
 
 //------------------------------------------------------------------------------
@@ -106,14 +107,14 @@ std::string Contact::getNickname( void ) const
 
 void Contact::setNumber( std::string pNumber )
 {
-	mNumber = pNumber;
+    mNumber = pNumber;
 }
 
 //------------------------------------------------------------------------------
 
 std::string Contact::getNumber( void ) const
 {
-	return mNumber;
+    return mNumber;
 }
 
 //------------------------------------------------------------------------------
@@ -121,14 +122,14 @@ std::string Contact::getNumber( void ) const
 
 void Contact::setSecret( std::string pSecret )
 {
-	mSecret = pSecret;
+    mSecret = pSecret;
 }
 
 //------------------------------------------------------------------------------
 
 std::string Contact::getSecret( void ) const
 {
-	return mSecret;
+    return mSecret;
 }
 
 //------------------------------------------------------------------------------
