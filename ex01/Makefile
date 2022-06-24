@@ -2,7 +2,8 @@ NAME 		:= phonebook
 
 SRCS		:= main.cpp \
 			   src/PhoneBook.cpp \
-			   src/Contact.cpp
+			   src/Contact.cpp \
+			   src/Client.cpp
 
 OBJ_FOLDER	:= obj
 
